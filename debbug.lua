@@ -4,26 +4,6 @@
     🎯 Objetivo: Ferramenta simples de debug para testes de frutas, XP, dinheiro e teleporte
 ]]
 
--- // CONFIGURAÇÕES
-local ENABLED = false
-
-local Players = game:GetService("Players")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local player = Players.LocalPlayer
-
--- // Checa permissão
-for _, id in ipairs(DEV_USER_IDS) do
-	if player.UserId == id then
-		ENABLED = true
-		break
-	end
-end
-
-if not ENABLED then
-	warn("Debug Tool desativado para este usuário.")
-	return
-end
-
 print("✅ Debug Tool ativada para", player.Name)
 
 
