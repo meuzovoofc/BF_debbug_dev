@@ -1,15 +1,18 @@
 --[[ 
-    📦 Blox Fruits - Dev Debug Tool
+    📦 Blox Fruits - Dev Debug Tool (Revisado)
     🔧 Autor: Bruno Ferreira (Dev Team)
     🎯 Painel de debug completo para testes
-    ⚠️ Sem restrição de UserId — cuidado ao compartilhar!
+    ⚠️ Sem restrição de UserId
 ]]
 
 -- Serviços
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+
 local player = Players.LocalPlayer
+local char = player.Character or player.CharacterAdded:Wait()
 
 -- Funções de debug
 local function giveMoney(amount)
@@ -40,16 +43,14 @@ local function giveFruit(fruitName)
 end
 
 local function teleportTo(pos)
-    if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-        player.Character.HumanoidRootPart.CFrame = CFrame.new(pos)
+    if char and char:FindFirstChild("HumanoidRootPart") then
+        char.HumanoidRootPart.CFrame = CFrame.new(pos)
         print("[DEBUG] Teleportado para:", pos)
     end
 end
 
 local function toggleInvincible()
-    local char = player.Character
     if char and char:FindFirstChild("Humanoid") then
-        char.Humanoid.NameDisplayDistance = 0
         char.Humanoid.MaxHealth = math.huge
         char.Humanoid.Health = math.huge
         print("[DEBUG] Invencibilidade ativada")
@@ -64,9 +65,9 @@ ScreenGui.Parent = player:WaitForChild("PlayerGui")
 
 local Frame = Instance.new("Frame")
 Frame.Parent = ScreenGui
-Frame.Size = UDim2.new(0, 250, 0, 400)
-Frame.Position = UDim2.new(0, 20, 0, 100)
-Frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+Frame.Size = UDim2.new(0, 260, 0, 420)
+Frame.Position = UDim2.new(0, 20, 0, 50)
+Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 Frame.BorderSizePixel = 0
 Frame.Active = true
 Frame.Draggable = true
